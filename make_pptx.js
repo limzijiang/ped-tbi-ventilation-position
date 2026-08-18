@@ -60,8 +60,9 @@ function newSlide(kicker, title, sub){
     fontFace:F, fontSize:10.5, color:'5A6472' });
   return s;
 }
-const TOP = 1.62;          // first content row when there is a sub-title
-const TOPN = 1.36;         // first content row when there is not
+const TOP = 1.80;          // first content row when there is a sub-title
+const TOPN = 1.36;         // first content row when there is not (figure slides
+                           //   need the extra height, so they start higher)
 
 /* ---------- components ---------- */
 function card(s, o){
@@ -148,9 +149,9 @@ const sm = { fontSize:10.5, color:C.dim };
 /* ======================= 1 · TITLE ======================= */
 {
   const s = pres.addSlide(); s.background = { color:C.bg }; n++;
-  s.addShape(pres.ShapeType.rect,{ x:0, y:0, w:W, h:H, fill:{ color:'1A0E12' } });
-  s.addShape(pres.ShapeType.ellipse,{ x:-2.4, y:-2.6, w:9.5, h:7.2,
-    fill:{ color:C.red, transparency:82 }, line:{ color:C.red, width:0 } });
+  /* flat deep-maroon ground; no decorative arc — a zero-width line still strokes
+     a hairline in PowerPoint and it cut straight through the title. */
+  s.addShape(pres.ShapeType.rect,{ x:0, y:0, w:W, h:H, fill:{ color:'1A0E12' }, line:{ type:'none' } });
   s.addText('EMT / EMT-P 進階救護教學', { x:M, y:1.75, w:CW, h:0.34, fontFace:F, fontSize:13,
     bold:true, color:C.red, charSpacing:2.6 });
   s.addText([ b('小兒疑似頭部外傷的三件事', { fontSize:40, breakLine:true }),
@@ -176,13 +177,13 @@ const sm = { fontSize:10.5, color:C.dim };
    ['40','EtCO2 目標 40\n範圍 35–45',C.teal]].forEach((m,i)=>{
     stat(s,{ x:M+i*(mw+0.25), y:TOP, w:mw, h:1.78, n:m[0], k:m[1], tone:m[2], nfs:40 });
   });
-  card(s,{ x:M, y:TOP+1.96, w:CW, h:1.36, tone:'red', lbl:'唯一的例外', body:'' });
+  card(s,{ x:M, y:TOP+1.96, w:CW, h:1.18, tone:'red', lbl:'唯一的例外', body:'' });
   s.addText([ b('只有出現腦疝徵象才可以吹快'),
     t('（瞳孔散大固定、姿勢異常、Cushing triad、GCS<9 或持續惡化），目標 '),
     b('EtCO2 30–35', { color:C.red }), t('，時間越短越好。一到院、徵象一改善就回到 40。') ],
     { x:M+0.24, y:TOP+2.28, w:CW-0.48, h:0.95, fontFace:F, fontSize:14.5, color:C.ink,
       margin:0, valign:'top', lineSpacingMultiple:1.2 });
-  analogy(s,{ x:M, y:TOP+3.5, w:CW, h:0.86, runs:[
+  analogy(s,{ x:M, y:TOP+3.34, w:CW, h:0.86, runs:[
     t('過度換氣是'), b('滅火器',{color:C.amber}),
     t('：真的失火時該按下去，但沒有人會一路噴著滅火器開車 —— 預防性地一直吹快，等於把腦血流一路噴掉。') ]});
   s.addNotes('口訣先給，證據後補。學員記得住的是三個數字，不是研究名稱。');
@@ -222,8 +223,8 @@ const sm = { fontSize:10.5, color:C.dim };
       ['抬高床頭 30°','降 ICP 有效；Cochrane 評 very low（最弱）','完全沒有分級建議','無任何資料'],
     ]});
   s.addText('證據等級為本簡報依各指引原文與系統性回顧結論歸納（概算式分級，非官方 GRADE 評分）。',
-    { x:M, y:TOP+2.05, w:CW, h:0.26, fontFace:F, fontSize:10.5, color:C.dim, margin:0 });
-  analogy(s,{ x:M, y:TOP+2.45, w:CW, h:1.0, runs:[
+    { x:M, y:TOP+2.88, w:CW, h:0.26, fontFace:F, fontSize:10.5, color:C.dim, margin:0 });
+  analogy(s,{ x:M, y:TOP+3.26, w:CW, h:1.0, runs:[
     t('像出門帶的三樣東西：'), b('安全帶',{color:C.amber}), t('（避免吹快，證據硬）、'),
     b('後照鏡',{color:C.amber}), t('（EtCO2，幫你知道有沒有做對）、'),
     b('坐墊高度',{color:C.amber}), t('（抬高床頭，合理、舒服，但沒人證明它救命）。') ]});
@@ -302,10 +303,10 @@ const sm = { fontSize:10.5, color:C.dim };
       ['LITES Network（2024）','院前 EtCO2 < 35 與缺氧、低血壓並列為可修正的有害事件'],
       ['Crit Care 2025 meta（約 42,000 人）','缺氧 aOR 1.39；低碳酸 aOR 1.64；高碳酸 aOR 1.74（95% CI 0.91–3.32，未達顯著）'],
     ]});
-  srcline(s, TOP+2.68, [ t('Davis／Caulfield／Dumont 三篇為 ',sm), lk('BTF 院前指引 3rd ed', DOI.btf3, sm),
+  srcline(s, TOP+3.14, [ t('Davis／Caulfield／Dumont 三篇為 ',sm), lk('BTF 院前指引 3rd ed', DOI.btf3, sm),
     t(' 所引用之依據研究。其餘見 ',sm), lk('JAMA Netw Open 2024（LITES）', DOI.lites, sm),
     t('、',sm), lk('Crit Care 2025 meta', DOI.co2meta, sm) ], 0.58);
-  analogy(s,{ x:M, y:TOP+3.4, w:CW, h:0.95, runs:[
+  analogy(s,{ x:M, y:TOP+3.86, w:CW, h:0.95, runs:[
     t('院前 RSI 那個 '), b('15% vs 8%',{color:C.amber}), t(' 說明的不是知識不足，是'),
     b('手會抖',{color:C.amber}), t(' —— 插管後緊張，一分鐘就多捏了十下。所以速率必須「設定」，不能「即興」。') ]});
   s.addNotes('這一頁是全課的說服核心：不是理論，是多篇資料方向一致。');
@@ -396,13 +397,13 @@ const sm = { fontSize:10.5, color:C.dim };
       ['例外二：院內 refractory 顱內高壓','輕度 PaCO2 32–35（SIBICC Tier 2）；<30 僅作 rescue，時間越短越好','ACS / SIBICC｜共識'],
       ['一般 ICU 通氣','PaCO2 35–40、pH 7.35–7.45、SpO2 ≥94%','ACS Best Practices｜共識'],
     ]});
-  card(s,{ x:M, y:TOP+2.55, w:CW, h:1.28, tone:'red', title:'BTF 3rd ed 列的腦疝／惡化徵象' });
+  card(s,{ x:M, y:TOP+2.74, w:CW, h:1.24, tone:'red', title:'BTF 3rd ed 列的腦疝／惡化徵象' });
   s.addText([ t('Cushing triad（高血壓＋心跳慢＋呼吸型態異常）· '), b('瞳孔固定放大'),
     t(' · 姿勢異常（posturing）· '), b('GCS < 9'),
     t(' · 持續惡化。指引也明講：這些徵象的預測力只是中到低，但在這個族群風險效益關係反轉。') ],
-    { x:M+0.24, y:TOP+3.08, w:CW-0.48, h:0.68, fontFace:F, fontSize:12.5, color:C.ink,
+    { x:M+0.24, y:TOP+3.26, w:CW-0.48, h:0.66, fontFace:F, fontSize:12.5, color:C.ink,
       margin:0, valign:'top', lineSpacingMultiple:1.16 });
-  srcline(s, TOP+4.0, [ t('來源：',sm), lk('BTF 院前指引 3rd ed（Prehosp Emerg Care 2023）', DOI.btf3, sm),
+  srcline(s, TOP+4.14, [ t('來源：',sm), lk('BTF 院前指引 3rd ed（Prehosp Emerg Care 2023）', DOI.btf3, sm),
     t('　·　',sm), lk('Executive Summary（Neurosurgery 2023）', DOI.btf3exec, sm) ]);
   s.addNotes('現場只需要記兩個數字帶：35–45 常規、30–35 腦疝。PaCO2 那兩列是給院內同仁的背景。');
 }
@@ -482,12 +483,12 @@ const sm = { fontSize:10.5, color:C.dim };
       ['存活出院','中度、critical','—','無顯著效益'],
     ]});
   s.addText('RSS-Head＝Regional Severity Score-Head。',
-    { x:M, y:TOP+2.45, w:CW, h:0.24, fontFace:F, fontSize:10.5, color:C.dim, margin:0 });
-  note(s,{ x:M, y:TOP+2.82, w:CW, h:1.05, runs:[
+    { x:M, y:TOP+2.78, w:CW, h:0.24, fontFace:F, fontSize:10.5, color:C.dim, margin:0 });
+  note(s,{ x:M, y:TOP+3.12, w:CW, h:1.0, runs:[
     b('誠實地讀這張表：'),
     t('8.42 這個數字很漂亮，但信賴區間下界貼在 1.01、上界破百 —— 意思是「方向大概是好的，幅度完全不知道」。'),
     b('不要在教材上寫成「存活率提高 8 倍」。',{color:C.red}) ]});
-  srcline(s, TOP+4.05, [ t('來源：',sm), lk('EPIC4Kids, Ann Emerg Med', DOI.epic4kids, sm) ]);
+  srcline(s, TOP+4.28, [ t('來源：',sm), lk('EPIC4Kids, Ann Emerg Med', DOI.epic4kids, sm) ]);
   s.addNotes('這是教學員讀信賴區間的最好例子 —— 點估計漂亮不代表結論強。');
 }
 
@@ -521,7 +522,7 @@ const sm = { fontSize:10.5, color:C.dim };
     b('2.7 mmHg'), t('，但'), b('不到一半的配對落在可接受帶內'), t('；右圖（24 小時內發生 PARDS）平均高 '),
     b('近 10 mmHg'), t('，散布明顯更寬 —— 死腔變大、V/Q 不匹配。受傷後'), b('最初 8 小時'), t('一致性也較差。') ]});
   srcline(s, TOPN+ih+1.52, [ t('Yang JT, et al. ',sm), lk('JAMA Netw Open. 2019;2(8):e199448', DOI.yang, sm),
-    t(', Figure 1 之 panel A 與 C（並列裁切）。© American Medical Association．為院內教學討論引用。',sm) ], 0.6);
+    t(', Figure 1 之 panel A 與 C（並列裁切）。© American Medical Association．為院內教學討論引用。',sm) ], 0.4);
   s.addNotes('請學員看右圖的藍線位置：那是「螢幕顯示 40、動脈其實 50」的畫面。');
 }
 

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小兒疑似頭部外傷：抬高床頭、避免過度換氣、EtCO₂ 監測｜實證回顧與 EMT 教學建議</title>
+<meta name="description" content="先看成人證據力，再看小兒有多少，然後化簡成現場記得住的口訣。BTF 院前指引 3rd ed、BTF 小兒重度 TBI 指引、EPIC / EPIC4Kids、Cochrane 與 2024–2025 meta-analyses 的實證整理。">
+<style>
+:root{
+  --bg:#0c0e13; --panel:#151a23; --panel2:#1c222d; --line:#2a323f;
+  --ink:#e9edf3; --muted:#a6b0be; --dim:#7d8796;
+  --red:#e2404c; --amber:#f0a836; --teal:#3ec6b4; --blue:#5aa9e6; --green:#5fbf6a;
+  --maxw:860px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+  font-size:18px;line-height:1.85;-webkit-font-smoothing:antialiased}
+
+/* ---- progress + top bar ---- */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--red);width:0;z-index:60;transition:width .1s linear}
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;padding:0 clamp(1rem,4vw,2.5rem);
+  background:rgba(12,14,19,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .t{font-size:15px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .acts{display:flex;gap:.5rem;flex-shrink:0}
+.btn{font-size:14px;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--ink);text-decoration:none;white-space:nowrap}
+.btn.pri{border-color:rgba(226,64,76,.55);background:rgba(226,64,76,.15);color:#ffb9bf}
+.btn:hover{border-color:var(--blue)}
+#tocBtn{display:none;cursor:pointer;font-family:inherit}
+
+/* ---- layout ---- */
+.wrap{max-width:1300px;margin:0 auto;padding:56px clamp(1rem,4vw,2.5rem) 6rem;
+  display:grid;grid-template-columns:250px minmax(0,var(--maxw)) 1fr;gap:2.2rem}
+nav.toc{grid-column:1;position:sticky;top:80px;align-self:start;max-height:calc(100vh - 110px);
+  overflow-y:auto;font-size:15px;padding-top:3.4rem;width:100%}
+nav.toc .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+  font-weight:800;margin-bottom:.7rem}
+nav.toc a{display:block;color:var(--dim);text-decoration:none;padding:.28rem 0 .28rem .7rem;
+  border-left:2px solid var(--line);line-height:1.4}
+nav.toc a.sub{padding-left:1.5rem;font-size:14px}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.on{color:var(--red);border-left-color:var(--red);font-weight:700}
+main{grid-column:2;min-width:0}
+
+/* ---- masthead ---- */
+.mast{padding:3.5rem 0 2rem;border-bottom:1px solid var(--line);margin-bottom:2.5rem;
+  background:radial-gradient(700px 300px at 0% 0%,rgba(179,27,40,.22),transparent 62%)}
+.kicker{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:800}
+.mast h1{font-size:clamp(30px,4.4vw,44px);line-height:1.25;font-weight:800;margin:.8rem 0}
+.mast h1 span{color:var(--red)}
+.mast .dek{font-size:20px;color:var(--muted);line-height:1.7}
+.mast .meta{margin-top:1.6rem;font-size:15px;color:var(--dim);line-height:1.7}
+
+/* ---- typography ---- */
+h2{font-size:clamp(24px,3vw,31px);font-weight:800;line-height:1.3;margin:3.2rem 0 .6rem;
+  padding-top:.6rem;scroll-margin-top:78px}
+h2 .num{color:var(--red);margin-right:.5rem}
+h3{font-size:21px;font-weight:800;margin:2.1rem 0 .5rem;color:#fff;scroll-margin-top:78px}
+h4{font-size:18px;font-weight:800;margin:1.4rem 0 .4rem;color:var(--teal)}
+p{margin:.85rem 0}
+.lead{font-size:20px;color:var(--muted)}
+strong{color:#fff;font-weight:700}
+em{color:var(--amber);font-style:normal;font-weight:700}
+.hl{color:var(--red);font-weight:700}
+.hl2{color:var(--teal);font-weight:700}
+a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,169,230,.38)}
+a:hover{border-bottom-color:var(--blue)}
+ul,ol{margin:.85rem 0 .85rem 0;padding-left:1.4rem}
+li{margin:.42rem 0}
+ul.tick{list-style:none;padding-left:0}
+ul.tick li{position:relative;padding-left:1.6rem}
+ul.tick li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:800}
+ul.cross{list-style:none;padding-left:0}
+ul.cross li{position:relative;padding-left:1.6rem}
+ul.cross li::before{content:"✕";position:absolute;left:0;color:var(--red);font-weight:800}
+hr{border:0;border-top:1px solid var(--line);margin:3rem 0}
+
+/* ---- blocks ---- */
+.callout{border-radius:14px;padding:1.15rem 1.35rem;margin:1.6rem 0;border:1px solid var(--line);
+  background:var(--panel)}
+.callout .ct{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;
+  margin-bottom:.45rem;color:var(--dim)}
+.callout p:first-of-type{margin-top:0}
+.callout p:last-child{margin-bottom:0}
+.callout.red{border-color:rgba(226,64,76,.5);background:linear-gradient(180deg,rgba(226,64,76,.13),rgba(226,64,76,.03))}
+.callout.red .ct{color:#ff9aa2}
+.callout.teal{border-color:rgba(62,198,180,.45);background:linear-gradient(180deg,rgba(62,198,180,.11),rgba(62,198,180,.02))}
+.callout.teal .ct{color:var(--teal)}
+.callout.amber{border-color:rgba(240,168,54,.48);background:linear-gradient(180deg,rgba(240,168,54,.13),rgba(240,168,54,.02))}
+.callout.amber .ct{color:var(--amber)}
+.analogy{display:flex;gap:.9rem;align-items:flex-start;margin:1.5rem 0;
+  background:linear-gradient(90deg,rgba(240,168,54,.14),rgba(240,168,54,.02));
+  border-left:3px solid var(--amber);border-radius:0 12px 12px 0;padding:.9rem 1.2rem}
+.analogy .emo{font-size:28px;line-height:1.2;flex-shrink:0}
+.analogy p{margin:0;font-size:17px;line-height:1.65}
+.analogy b{color:var(--amber)}
+.analogy .tag{font-weight:800;color:var(--amber);letter-spacing:.08em;margin-right:.45em;font-size:15px}
+blockquote{border-left:3px solid var(--red);padding:.4rem 0 .4rem 1.2rem;margin:1.5rem 0;
+  color:#fff;font-size:19px;font-style:italic}
+
+/* ---- stats ---- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1.5rem 0}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:1rem .8rem;text-align:center}
+.stat .n{font-size:30px;font-weight:800;line-height:1.1;color:var(--red)}
+.stat .n.t{color:var(--teal)}.stat .n.a{color:var(--amber)}.stat .n.w{color:#fff;font-size:24px}
+.stat .k{font-size:14px;color:var(--muted);margin-top:.35rem;line-height:1.4}
+
+/* ---- tables ---- */
+.tw{overflow-x:auto;margin:1.5rem 0;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:520px}
+th,td{padding:.6rem .8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.6}
+th{background:var(--panel2);color:var(--dim);font-size:14px;letter-spacing:.05em;
+  text-transform:uppercase;font-weight:800;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tr.key{background:rgba(226,64,76,.09)}tr.key td{color:#fff}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw + .cap{font-size:14px;color:var(--dim);margin-top:-.9rem;line-height:1.6}
+.grade{display:inline-block;font-size:13px;font-weight:800;border-radius:5px;padding:.05rem .4rem;white-space:nowrap}
+.g1{background:rgba(95,191,106,.2);color:#8fe09a;border:1px solid rgba(95,191,106,.45)}
+.g2{background:rgba(240,168,54,.18);color:#f5c579;border:1px solid rgba(240,168,54,.45)}
+.g3{background:rgba(226,64,76,.18);color:#f28e96;border:1px solid rgba(226,64,76,.45)}
+
+/* ---- figures ---- */
+figure{margin:2rem 0}
+figure .box{background:#fff;border-radius:12px;padding:.6rem;display:flex;justify-content:center}
+figure img{max-width:100%;height:auto;display:block}
+figcaption{font-size:14px;color:var(--dim);margin-top:.7rem;line-height:1.65}
+
+/* ---- CO2 band ---- */
+.band{margin:1.6rem 0}
+.band .track{position:relative;height:52px;border-radius:9px;overflow:hidden;
+  background:var(--panel2);border:1px solid var(--line)}
+.band .seg{position:absolute;top:0;bottom:0;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;text-align:center;line-height:1.25;padding:0 .2rem}
+.band .ticks{display:flex;justify-content:space-between;font-size:14px;color:var(--dim);margin-top:.3rem}
+.band .lg{font-size:14px;color:var(--muted);margin-top:.5rem;line-height:1.6}
+
+/* ---- flow ---- */
+.flow{display:flex;align-items:stretch;gap:.6rem;flex-wrap:wrap;margin:1.5rem 0}
+.flow .box{background:var(--panel2);border:1px solid var(--line);border-radius:11px;
+  padding:.7rem .9rem;flex:1;min-width:150px;font-size:16px;line-height:1.5}
+.flow .arw{display:flex;align-items:center;color:var(--red);font-weight:800;font-size:22px}
+
+/* ---- refs ---- */
+ol.refs{font-size:16px;line-height:1.65}
+ol.refs li{margin:.55rem 0}
+
+footer{margin-top:4rem;padding-top:1.8rem;border-top:1px solid var(--line);font-size:15px;color:var(--dim);line-height:1.8}
+
+/* ---- responsive ---- */
+@media (max-width:1200px){
+  .wrap{grid-template-columns:1fr;max-width:var(--maxw)}
+  main{grid-column:1}
+  nav.toc{position:fixed;inset:56px 0 auto 0;grid-column:1;max-width:none;justify-self:stretch;
+    background:rgba(12,14,19,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+    padding:1rem clamp(1rem,4vw,2.5rem) 1.2rem;display:none;max-height:calc(100vh - 56px);z-index:45}
+  nav.toc.open{display:block}
+  #tocBtn{display:block}
+}
+@media print{
+  body{background:#fff;color:#111;font-size:11pt}
+  .topbar,#prog,nav.toc{display:none}
+  .wrap{display:block;max-width:none;padding:0}
+  a{color:#111;border:0}
+  .callout,.analogy,.stat,.tw{break-inside:avoid}
+  figure{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="topbar">
+  <div class="t">小兒疑似 TBI：抬高床頭 · 避免過度換氣 · EtCO₂</div>
+  <div class="acts">
+    <button class="btn" id="tocBtn">目錄</button>
+    <a class="btn pri" href="index.html">投影片版 →</a>
+  </div>
+</div>
+
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="lbl">目錄</div>
+  <a href="#s0">一句話結論</a>
+  <a href="#s1">1 · 我們在對抗什麼</a>
+  <a href="#s2">2 · 成人證據</a>
+  <a href="#s2-1" class="sub">抬高床頭 30°</a>
+  <a href="#s2-2" class="sub">過度換氣</a>
+  <a href="#s2-3" class="sub">EPIC 研究</a>
+  <a href="#s2-4" class="sub">EtCO₂ 監測</a>
+  <a href="#s3">3 · 小兒證據</a>
+  <a href="#s3-1" class="sub">三句話講完</a>
+  <a href="#s3-2" class="sub">EPIC4Kids</a>
+  <a href="#s3-3" class="sub">EtCO₂ 落差</a>
+  <a href="#s4">4 · 年齡別門檻</a>
+  <a href="#s5">5 · EMT 教學建議</a>
+  <a href="#s6">6 · 核對後的兩個修正</a>
+  <a href="#s7">7 · 數字查核</a>
+  <a href="#s8">8 · 參考文獻</a>
+</nav>
+
+<main>
+<header class="mast">
+  <div class="kicker">EMT / EMT-P 進階救護 · 實證回顧</div>
+  <h1>小兒疑似頭部外傷的三件事<br><span>抬高床頭 · 避免過度換氣 · EtCO₂ 監測</span></h1>
+  <p class="dek">先看成人的證據力，再看小兒到底有多少，然後化簡成現場記得住的口訣。</p>
+  <div class="meta">
+    2026-08-17　·　閱讀時間約 15 分鐘<br>
+    實證來源：BTF 院前指引 3rd ed（2023）· BTF 小兒重度 TBI 指引 3rd ed（2019）· EPIC / EPIC4Kids · Cochrane · 2024–2025 meta-analyses<br>
+    以 OpenEvidence 檢索起始，關鍵數字回原文／PubMed 核對（見<a href="#s7">第 7 節</a>）。
+  </div>
+</header>
+
+<section id="s0">
+<div class="callout red">
+  <div class="ct">一句話結論</div>
+  <p>三項干預的證據力差很多，<strong>教學力度應該跟著證據力走</strong>：</p>
+  <ul>
+    <li><strong>避免過度換氣</strong> —— 有病人預後證據（小兒仍只有 Level III）</li>
+    <li><strong>EtCO₂ 監測</strong> —— Strong 建議，但指引自承防不了吹過頭；小兒指引甚至不表態能否取代 PaCO₂</li>
+    <li><strong>抬高床頭 30°</strong> —— 只有降 ICP 的生理證據，Cochrane 評 very low quality，<span class="hl">小兒指引完全沒有分級建議</span></li>
+  </ul>
+  <p>現場口訣：<strong>頭抬 30、吹 10 下、盯 40</strong>；唯一例外是<strong>瞳孔放大才可以吹快，而且只吹到 EtCO₂ 30–35</strong>。</p>
+</div>
+<div class="analogy">
+  <div class="emo">🧯</div>
+  <p><span class="tag">比喻</span>過度換氣是<b>滅火器</b>：真的失火時該按下去，但沒有人會一路噴著滅火器開車 —— 預防性地一直吹快，等於把腦血流一路噴掉。</p>
+</div>
+</section>
+
+<h2 id="s1"><span class="num">1</span>我們在對抗的是「二次腦傷」</h2>
+<p class="lead">撞擊那一下我們改不了；接下來的 30 分鐘可以。</p>
+<p>院前能改變結局的，是三個<strong>可修正的傷害</strong>：缺氧（SpO₂ &lt; 90%）、低血壓（依年齡）、低碳酸（EtCO₂ &lt; 35，也就是吹太快）。</p>
+<h4>為什麼低碳酸會傷腦</h4>
+<p>CO₂ 掉 → 腦血管收縮 → 腦血流下降。而受傷早期，<strong>約一半的病人腦血流已經掉到剩下三分之一</strong>。此時再吹快，等於在已經缺血的腦上再減供血。</p>
+<div class="analogy">
+  <div class="emo">🔥</div>
+  <p><span class="tag">比喻</span>CO₂ 是腦血管的<b>瓦斯旋鈕</b>。把 CO₂ 吹掉，就是把旋鈕轉小 —— 螢幕上的「腦壓」看起來乖了，但爐火（腦血流）也一起小了。</p>
+</div>
+
+<h2 id="s2"><span class="num">2</span>成人證據：所有小兒建議的外推來源</h2>
+
+<h3 id="s2-1">2-1　抬高床頭 30°：確實降腦壓，但也只降腦壓</h3>
+<p>2024 年一篇系統性回顧／統合分析（25 篇研究，16 篇可量化）給出目前最完整的答案：</p>
+<div class="stats">
+  <div class="stat"><div class="n">−5.58</div><div class="k">ICP（mmHg）<br>30° vs 平躺，p&lt;0.00001</div></div>
+  <div class="stat"><div class="n a">−2.48</div><div class="k">CPP（mmHg）<br><strong>p=0.13 無差異</strong></div></div>
+  <div class="stat"><div class="n a">0</div><div class="k">腦氧 SjvO₂、PbtO₂<br>無差異</div></div>
+  <div class="stat"><div class="n w">無資料</div><div class="k">死亡率／功能預後</div></div>
+</div>
+<p>TBI 次群組結果一致。抬高超過 30° 通常再降一些 ICP，但 <strong>45° 並沒有比 30° 更好</strong> —— 所以 30° 是合理的停損點，沒有理由抬更高。</p>
+<blockquote>研究之間缺乏一致性、資料稀少、受試者反應變異大，且沒有證據顯示此效果與臨床結果有適當相關 —— 使我們無法對臨床實務下結論。<br><span style="font-size:15px;font-style:normal;color:var(--dim)">— Cochrane 2017，證據品質評為 very low</span></blockquote>
+<div class="callout amber">
+  <div class="ct">⚠ 可能的傷害</div>
+  <p>Cochrane 明確指出：抬高會減少靜脈回流，<strong>可能降低 CPP、造成腦缺血</strong>，尤其在 autoregulation 受損或低血容的外傷病人。結論是角度應<strong>個別化</strong>，不是套用固定 30° 目標。</p>
+</div>
+<div class="analogy">
+  <div class="emo">🚰</div>
+  <p><span class="tag">比喻</span>抬高床頭像<b>把水塔的洩壓閥打開</b>：管壓（ICP）確實降了，但如果幫浦（血壓）本來就弱，頂樓（腦）拿到的水並沒有變多 —— 這正是 CPP 沒改善的意思。</p>
+</div>
+<h4>院前協定自己也不統一</h4>
+<p>美國 32 州 EMS 協定只有 <strong>15/32（46.9%）</strong>明文寫抬高床頭；另一份 benchmark 研究顯示它被寫進協定的比例，遠低於氧氣／通氣與血壓目標。ACS Best Practices 談後送時只寫「避免低血壓、缺氧、高碳酸、低體溫＋快速送到最高等級創傷中心」，<strong>沒有指定床頭角度</strong>。</p>
+
+<h3 id="s2-2">2-2　過度換氣：本課證據最硬的一段</h3>
+<div class="tw"><table>
+<thead><tr><th>研究</th><th>發現</th></tr></thead>
+<tbody>
+<tr><td>Davis（2005）、Caulfield（2009）</td><td>院前過度換氣、到院 PaCO₂ 偏低 → 死亡率↑、GOS 較差</td></tr>
+<tr class="key"><td>Dumont（2010）</td><td><strong>過度換氣與換氣不足「兩端」都獨立增加死亡風險</strong></td></tr>
+<tr><td>院前 RSI 觀察</td><td>接受院前 RSI 者 <strong>15%</strong> 到院 PaCO₂ &lt; 25 mmHg（未插管對照組 8%）</td></tr>
+<tr><td>LITES Network（2024）</td><td>院前 <strong>EtCO₂ &lt; 35</strong> 與缺氧、低血壓並列為可修正的有害事件</td></tr>
+<tr><td>Crit Care 2025 meta（約 42,000 人）</td><td>缺氧 aOR <strong>1.39</strong>；低碳酸 aOR <strong>1.64</strong>；高碳酸 aOR 1.74（<em>95% CI 0.91–3.32，未達顯著</em>）</td></tr>
+</tbody></table></div>
+<div class="analogy">
+  <div class="emo">🫧</div>
+  <p><span class="tag">比喻</span>院前 RSI 那個 <b>15% vs 8%</b> 說明的不是知識不足，是<b>手會抖</b> —— 插管後緊張，一分鐘就多捏了十下。所以速率必須「設定」，不能「即興」。</p>
+</div>
+
+<h4>PaCO₂ 是 U 型曲線，最低點在 40 附近</h4>
+<div class="band">
+  <div class="track">
+    <div class="seg" style="left:0%;width:25%;background:repeating-linear-gradient(45deg,rgba(226,64,76,.30),rgba(226,64,76,.30) 8px,transparent 8px,transparent 16px)">&lt; 30　救援專用</div>
+    <div class="seg" style="left:25%;width:12.5%;background:rgba(240,168,54,.30)">30–35</div>
+    <div class="seg" style="left:37.5%;width:25%;background:rgba(62,198,180,.32)">35–45　目標區（瞄 40）</div>
+    <div class="seg" style="left:62.5%;width:12.5%;background:rgba(166,176,190,.14)"></div>
+    <div class="seg" style="left:75%;width:25%;background:repeating-linear-gradient(45deg,rgba(226,64,76,.22),rgba(226,64,76,.22) 8px,transparent 8px,transparent 16px)">&gt; 50　過度堆積</div>
+  </div>
+  <div class="ticks"><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span></div>
+  <div class="lg">橫軸為 PaCO₂（mmHg）線性刻度 20–60。<span style="color:var(--amber)">■</span> 30–35＝腦疝時的暫時目標　<span style="color:var(--teal)">■</span> 35–45＝常規目標區　斜線區＝有害。整條帶為<strong>示意圖</strong>，區間依下列文獻繪製。</div>
+</div>
+<p>MIMIC-III／IV 顱腦損傷分析顯示：院內死亡率最低點在 PaCO₂ <strong>≈ 39.5 mmHg</strong>，整體風險最低區間是 <strong>35–45</strong>。兩端都是壞事 —— 吹太快造成腦血管收縮與腦缺血，吹太慢造成腦血管擴張與 ICP 上升。</p>
+<div class="analogy">
+  <div class="emo">🍞</div>
+  <p><span class="tag">比喻</span>像<b>烤箱溫度</b>：太低麵包不熟、太高直接焦掉。沒有「保險起見調低一點」這種選項。</p>
+</div>
+
+<h4>三層目標：一個常規、兩個例外</h4>
+<div class="tw"><table>
+<thead><tr><th>情境</th><th>目標</th><th>來源與強度</th></tr></thead>
+<tbody>
+<tr class="key"><td><strong>常規</strong>（無腦疝徵象）</td><td>連續 capnography 維持 <strong>EtCO₂ 35–45</strong>；策略上求 eucapnia、避免 hypocapnia（EtCO₂ 35–40）</td><td>BTF 院前 3rd ed <span class="grade g1">Strong</span></td></tr>
+<tr><td><strong>例外一：</strong>腦疝／急性惡化</td><td>過度換氣目標 <strong>EtCO₂ 30–35</strong>，以 capnography 導引</td><td>BTF 院前 3rd ed <span class="grade g1">Strong</span></td></tr>
+<tr><td><strong>例外二：</strong>院內 refractory 顱內高壓</td><td>輕度 PaCO₂ 32–35（SIBICC Tier 2）；&lt;30 僅作 rescue，時間越短越好</td><td>ACS / SIBICC <span class="grade g2">共識</span></td></tr>
+<tr><td>一般 ICU 通氣</td><td>PaCO₂ 35–40、pH 7.35–7.45、SpO₂ ≥94%</td><td>ACS Best Practices <span class="grade g2">共識</span></td></tr>
+</tbody></table></div>
+<p><strong>BTF 3rd ed 列的腦疝／惡化徵象：</strong>Cushing triad（高血壓＋心跳慢＋呼吸型態異常）、<strong>瞳孔固定放大</strong>、姿勢異常（posturing）、<strong>GCS &lt; 9</strong>、持續惡化。指引也明講：這些徵象的預測力只是中到低，但在這個族群風險效益關係反轉。</p>
+
+<h3 id="s2-3">2-3　EPIC：把指引真的做下去會怎樣</h3>
+<p>Arizona 全州前後對照（2007–2015）。介入是一個<strong>套餐</strong>：避免過度換氣（設定速率、兩指捏球、連續 EtCO₂ 目標 40／範圍 35–45）＋避免缺氧＋積極治療低血壓。</p>
+<figure>
+  <div class="box"><img src="__IMG_EPIC__" alt="EPIC 研究 Figure 3：依嚴重度分層的存活校正勝算比"></div>
+  <figcaption>
+    <strong>怎麼讀：</strong>接受正壓通氣（PPV）者，頭傷嚴重度 3–4 存活出院 <strong>aOR 3.52（1.96–6.34）</strong>；但嚴重度 5–6 是 <strong>aOR 0.72（0.58–0.88）</strong> —— 最重的那群反而更差。插管（ETI）呈現同樣的方向（3.14 vs 0.67）。這是「機會之窗」最直接的證據，也提醒我們：<span class="hl">同一個做法在不同嚴重度不是同一件事</span>。<br>
+    Spaite DW, et al. <a href="https://doi.org/10.1001/jamasurg.2019.1152" target="_blank" rel="noopener">JAMA Surg. 2019;154(7):e191152</a>, Figure 3. © American Medical Association．為院內教學討論引用。
+  </figcaption>
+</figure>
+<div class="analogy">
+  <div class="emo">☂️</div>
+  <p><span class="tag">比喻</span>指引像<b>雨傘</b>：太陽天用不到（輕傷本來就會好），颱風天撐不住（critical 怎麼做都難救），<b>中到大雨最有用</b>。這叫「依嚴重度的機會之窗」。</p>
+</div>
+
+<h3 id="s2-4">2-4　EtCO₂：指引強力推薦，但指引自己說它不夠</h3>
+<blockquote>Capnography <strong>不保證</strong>能避免無意識的過度換氣 —— 因為 EtCO₂ 與 PaCO₂ 有落差，加上院前操作的現實困難。</blockquote>
+<p>所以必須配套：<strong>先設定速率，再用 EtCO₂ 確認</strong>；紀律性捏球（兩指、小容量）；不能只盯數字、不管手。</p>
+<p>而落差本身就是壞消息 —— 成人回溯研究顯示：EtCO₂–PaCO₂ <strong>gap 每增加 1 kPa（≈7.5 mmHg），死亡率 2.7 倍</strong>，且 EtCO₂ <strong>系統性低估</strong> PaCO₂。</p>
+<div class="analogy">
+  <div class="emo">🌡️</div>
+  <p><span class="tag">比喻</span>EtCO₂ 像<b>裝在門口的溫度計</b>量整棟房子：走廊（死腔）越長，讀數離房內真實溫度越遠。肺一有問題，走廊就變長。</p>
+</div>
+
+<h2 id="s3"><span class="num">3</span>小兒證據：明顯較弱，多為外推</h2>
+
+<h3 id="s3-1">3-1　三句話講完</h3>
+<div class="tw"><table>
+<thead><tr><th>干預</th><th>2019 BTF 小兒重度 TBI 指引 3rd ed 的實際內容</th></tr></thead>
+<tbody>
+<tr><td><strong>抬高床頭</strong></td><td><strong>沒有任何分級建議</strong>，連 Level III 都沒有。屬「良好臨床實務／生理合理性」層級</td></tr>
+<tr class="key"><td><strong>過度換氣</strong></td><td><strong>Level III（weak）</strong>：受傷後 48 小時內不建議預防性重度過度換氣至 PaCO₂ &lt; 30；若為 refractory 顱內高壓而使用，建議加上腦缺血的進階監測。<strong>這是指引中唯一一條關於通氣的建議</strong></td></tr>
+<tr><td><strong>EtCO₂</strong></td><td>因資料不足，<strong>不對「EtCO₂ 可否取代 PaCO₂」做出任何建議</strong>（for or against 都沒有）。TQIP 亦同</td></tr>
+</tbody></table></div>
+<h4>為什麼小孩更不該吹快</h4>
+<ul class="tick">
+  <li>兒童 TBI 後 <strong>hyperemia（腦血流過多）不常見</strong> → 「用吹快壓 hyperemia」的理由不成立</li>
+  <li>與較差預後相關的是<strong>腦血流過低</strong>，不是過高</li>
+  <li>低碳酸會降低 <strong>CSF buffering</strong>，日後 ICP 波動更難擋</li>
+</ul>
+<p>指引因此把目標訂在<strong>正常 PaCO₂ 35–45</strong>，而不是某個 EtCO₂ 數字。注意這個措辭差異：小兒指引講 <strong>PaCO₂</strong>，院前指引講 <strong>EtCO₂</strong> —— 因為它不願意保證兩者可以互換。</p>
+<div class="analogy">
+  <div class="emo">🏦</div>
+  <p><span class="tag">比喻</span>CSF buffering 像<b>活期存款</b>：低碳酸把它花掉了。平常看不出差別，等下一次 ICP 帳單來（搬動、抽痰、躁動），才發現沒錢付。</p>
+</div>
+
+<h3 id="s3-2">3-2　EPIC4Kids：最直接的小兒院前證據</h3>
+<p>EPIC 的預先計畫小兒次分析，2,801 名 &lt;18 歲（前 2,041／後 760），送 Arizona Level I 創傷中心。</p>
+<div class="tw"><table>
+<thead><tr><th>結果</th><th>族群</th><th>aOR（95% CI）</th><th>判讀</th></tr></thead>
+<tbody>
+<tr><td>存活出院</td><td>全體（中度＋重度＋critical）</td><td class="num">1.16（0.70–1.92）</td><td><strong>未改善</strong></td></tr>
+<tr class="key"><td>存活到住院</td><td>全體</td><td class="num"><strong>2.41（1.17–5.21）</strong></td><td>顯著改善</td></tr>
+<tr class="key"><td>存活出院</td><td><strong>重度</strong>（RSS-Head 3–4）</td><td class="num"><strong>8.42（1.01 – &gt;100）</strong></td><td>顯著，但 <em>CI 極寬</em></td></tr>
+<tr><td>存活出院</td><td>重度且接受正壓通氣</td><td class="num">9.13（0.79 – &gt;100）</td><td>方向一致，未達顯著</td></tr>
+<tr><td>存活出院</td><td>中度、critical</td><td class="num">—</td><td>無顯著效益</td></tr>
+</tbody></table></div>
+<div class="callout amber">
+  <div class="ct">誠實地讀這張表</div>
+  <p>8.42 這個數字很漂亮，但信賴區間下界貼在 1.01、上界破百 —— 意思是「方向大概是好的，幅度完全不知道」。<span class="hl">不要在教材上寫成「存活率提高 8 倍」。</span></p>
+  <p>作者結論是存在<strong>依嚴重度的機會之窗</strong>，並支持繼續推廣小兒院前 TBI 指引 —— 不是「指引沒用」。中度有天花板效應、critical 傷害已定型，<strong>「看起來很嚴重但還有機會」的那個孩子</strong>才是基本功最能改變結局的人。</p>
+</div>
+
+<h3 id="s3-3">3-3　小兒 EtCO₂ 落差：最重要的小兒特異警訊</h3>
+<figure>
+  <div class="box"><img src="__IMG_ETCO2__" alt="小兒 PaCO₂ 減 EtCO₂ 的 Bland-Altman 分析：全部病人 vs 發生 PARDS 者"></div>
+  <figcaption>
+    <strong>怎麼讀：</strong>縱軸是 <strong>PaCO₂ − EtCO₂</strong>；藍線是平均偏差，橘線是事先設定「可接受」的 0–5 mmHg 帶，深色線是一致性界限。左圖（全部病人）平均高 <strong>2.7 mmHg</strong>，但<strong>不到一半的配對落在可接受帶內</strong>；右圖（24 小時內發生 PARDS）平均高 <strong>近 10 mmHg</strong>，散布明顯更寬 —— 死腔變大、V/Q 不匹配。受傷後<strong>最初 8 小時</strong>一致性也較差。<br>
+    Yang JT, et al. <a href="https://doi.org/10.1001/jamanetworkopen.2019.9448" target="_blank" rel="noopener">JAMA Netw Open. 2019;2(8):e199448</a>, Figure 1 之 panel A 與 C（並列裁切）。© American Medical Association．為院內教學討論引用。
+  </figcaption>
+</figure>
+
+<h2 id="s4"><span class="num">4</span>年齡別門檻：這一節的證據比姿勢與通氣都硬</h2>
+<div class="callout red">
+  <div class="ct">兩套數字並存，講課時一定要分清楚</div>
+  <p>研究與多數 SOP 用的低血壓<strong>定義</strong>是 <strong>SBP &lt; 70+(2×年齡)</strong>；BTF 院前指引 3rd ed 給的是要<strong>維持的目標</strong>，明顯更高。</p>
+  <p>講法：<span class="hl">「低於 70+2×年齡＝已經出事；但我們要追的是下面這張表。」</span></p>
+</div>
+<div class="tw"><table>
+<thead><tr><th>年齡</th><th>收縮壓目標（BTF 院前 3rd ed, Table 1）</th><th>強度</th></tr></thead>
+<tbody>
+<tr><td>≤ 28 天</td><td class="num">&gt; 70 mmHg</td><td>Weak</td></tr>
+<tr><td>1–12 個月</td><td class="num">&gt; 84 mmHg</td><td>Weak</td></tr>
+<tr><td>1–5 歲</td><td class="num">&gt; 90 mmHg</td><td>Weak</td></tr>
+<tr><td>≥ 6 歲</td><td class="num">&gt; 100 mmHg</td><td>Weak</td></tr>
+<tr class="key"><td>成人</td><td class="num">≥ 110 mmHg</td><td>Weak</td></tr>
+</tbody></table></div>
+<p class="cap"><strong>缺氧：</strong>連續量 SpO₂、給氧維持 <strong>&gt; 90%</strong>（Strong）；SpO₂ &lt; 90% 即為 hypoxemia（ACS 寫求 ≥94%），建議每 5 分鐘查一次。</p>
+<h4>PEGASUS：及時處理低血壓的代價與回報</h4>
+<p>Kannan 2018，5 家兒童創傷中心、236 名重度 TBI 兒童：早期低血壓發生率 <strong>26%</strong>（60/234），死亡率 <strong>23.3% vs 8.6%（p=0.01）</strong>；<strong>30 分鐘內</strong>以輸液／血品／升壓劑處理者 92%（55/60），院內死亡 <strong>aRR 0.46（0.24–0.90）</strong>、不良出院 GOS <strong>aRR 0.54（0.39–0.76）</strong>。</p>
+<p>另有 NTDB 分析顯示：入院 SBP <strong>低於同齡第 75 百分位</strong>即與院內死亡增加相關（遠高於傳統切點），與 BTF 較高的目標方向一致。</p>
+
+<h2 id="s5"><span class="num">5</span>EMT 教學建議</h2>
+<div class="callout red">
+  <div class="ct">口訣</div>
+  <p style="font-size:23px;font-weight:800;color:#fff">頭抬 30、吹 10 下、盯 40</p>
+  <p><strong>唯一例外：</strong>瞳孔放大才可以吹快，而且只吹到 EtCO₂ 30–35。</p>
+  <p>更順口：「<strong>三十、十、四十；瞳孔放大降到三十五</strong>」。速率只是手段，<span class="hl2">EtCO₂ 才是終點</span>。</p>
+</div>
+
+<h3>5-1　通氣：教「節拍器」，不要教「感覺」</h3>
+<ul>
+  <li><strong>設定節拍</strong>：手機節拍器／監視器嗶聲／心中數「1-2-3-4-5-6」再擠一次</li>
+  <li><strong>兩指捏球</strong>，不是滿掌握（成人只需 500–600 mL）；看胸廓微起就停，不追「起得漂亮」</li>
+  <li>課堂<strong>一定要演錯誤示範</strong>：故意憑感覺捏 → EtCO₂ 掉到 25 → 當場講腦血管收縮。看過一次比聽十次有效</li>
+</ul>
+<div class="analogy">
+  <div class="emo">🎵</div>
+  <p><span class="tag">比喻</span>唱歌<b>沒有伴奏會越唱越快</b> —— 人在壓力下天生會加速。所以速率要「設定」，不能「即興」。</p>
+</div>
+<p><strong>鐵律一句話：</strong>「緊張的時候你一定會吹快，所以我們用節拍器，不用感覺。」</p>
+
+<h3>5-2　EtCO₂：教「它會怎麼騙你」</h3>
+<p>三個紅旗 —— 此時螢幕數字<strong>低於</strong>真實 PaCO₂：</p>
+<ol>
+  <li><strong>灌流差</strong>：低血壓、休克、CPR 中</li>
+  <li><strong>肺有問題</strong>：溺水、氣喘、肺挫傷、PARDS —— 差距可達 <strong>10 mmHg</strong></li>
+  <li><strong>受傷／插管最初數小時</strong>：最初 <strong>8 小時</strong>一致性最差</li>
+</ol>
+<div class="callout teal">
+  <div class="ct">現場規則只有一句</div>
+  <p><strong>螢幕 40，真實可能是 45–50。</strong>因此<span class="hl">絕不因為螢幕偏低就再吹快</span> —— 先問「是不是我吹太快」，再問「是不是血壓掉了」，最後才想儀器。先確認有正常方形波，再讀值。</p>
+</div>
+<div class="analogy">
+  <div class="emo">⚖️</div>
+  <p><span class="tag">比喻</span>看到體重計數字下降就以為變健康 —— 其實是<b>脫水</b>。EtCO₂ 掉下來也一樣：可能是通氣「進步」，更可能是灌流變差或你手太快。</p>
+</div>
+
+<h3>5-3　抬高床頭：加一個前置條件才能教</h3>
+<div class="flow">
+  <div class="box">① 血壓達標？<br><span style="font-size:14px;color:var(--dim)">依年齡別目標</span></div>
+  <div class="arw">→</div>
+  <div class="box">② 整床／<strong>整板傾斜 30°</strong><br><span style="font-size:14px;color:var(--dim)">reverse Trendelenburg</span></div>
+  <div class="arw">→</div>
+  <div class="box">③ <strong>2 分鐘內重測血壓</strong></div>
+  <div class="arw">→</div>
+  <div class="box">④ 血壓掉 → <span class="hl">放平</span></div>
+</div>
+<ul>
+  <li>已上背板 → <strong>整板傾斜</strong>，不折頸、不在頭下塞枕頭；頭頸維持中立位</li>
+  <li><strong>嬰兒大後枕</strong> → 墊<strong>軀幹</strong>（不是墊頭）維持中立位。⚠ 本次檢索<strong>未找到指引分級證據</strong>，屬教學共識</li>
+  <li>抬高不能延遲後送</li>
+</ul>
+<p><strong>一句話：</strong>抬高床頭是「有空才做的加分題」，血壓和血氧是「不做就不及格」。</p>
+
+<h3>5-4　不要讓學員把重點放錯</h3>
+<p>真正救命的三件事，證據都比床頭角度硬得多：<strong>SpO₂ &gt; 90%（每 5 分鐘量）</strong>、<strong>低血壓 30 分鐘內處理</strong>、<strong>快速後送到最高等級創傷中心</strong>。缺氧與低血壓<strong>併存</strong>比任何單一項都差；未被處理的低血壓，死亡 OR <strong>3.4</strong>、殘障 OR <strong>3.7</strong>。</p>
+<div class="analogy">
+  <div class="emo">🧱</div>
+  <p><span class="tag">比喻</span>床頭角度是<b>裝潢</b>，血壓與血氧是<b>地基</b>。沒有人會在地基還在下沉的時候討論牆要漆什麼顏色。</p>
+</div>
+
+<h3>5-5　OSCE／檢核情境</h3>
+<div class="tw"><table>
+<thead><tr><th>情境</th><th>正確處置</th></tr></thead>
+<tbody>
+<tr><td><strong>A</strong>　5 歲、車禍、GCS 7、已 BVM、SpO₂ 96%、SBP 88、EtCO₂ 28</td><td><strong>吹太快 → 放慢</strong>，EtCO₂ 回到 35–45；同時處理 SBP 88（1–5 歲目標 &gt;90）</td></tr>
+<tr class="key"><td><strong>B</strong>　同上但 EtCO₂ 33，學員說「再吹快一點比較安全」</td><td><strong>錯</strong>。35 以下就是在傷害腦部，沒有「保險起見吹低一點」（最常見錯誤）</td></tr>
+<tr><td><strong>C</strong>　8 個月嬰兒、墜落、GCS 6、右瞳散大固定、姿勢異常</td><td>符合腦疝 → <strong>吹快，目標 EtCO₂ 30–35</strong>，持續評估、盡速後送</td></tr>
+<tr class="key"><td><strong>D</strong>　3 歲、GCS 8、SBP 68，學員先把床頭抬到 30°</td><td><strong>順序錯</strong>。先處理低血壓，血壓沒到不要抬</td></tr>
+<tr><td><strong>E</strong>　溺水後 6 歲、已插管、EtCO₂ 38 但 SpO₂ 89%</td><td>肺有問題 → <strong>EtCO₂ 低估 PaCO₂</strong>；不要因數字漂亮而放心，先解決氧合</td></tr>
+</tbody></table></div>
+<p><strong>共同答案：</strong>五題考的都是「<span class="hl">別吹快、血壓優先、EtCO₂ 是儀表不是目標</span>」。</p>
+
+<h2 id="s6"><span class="num">6</span>核對原文後修正的兩件事</h2>
+<div class="callout amber">
+  <div class="ct">修正一</div>
+  <p><strong>「嬰兒 25、兒童 20 次/分」不在現行 BTF 院前指引 3rd ed 裡。</strong></p>
+  <p>3rd ed（2023）原文只寫：需正壓通氣者維持「<strong>約 10 次/分，EtCO₂ 35–45</strong>」，<strong>全文未列任何年齡別速率</strong>（已核對 Executive Summary 原文）。20／25 是舊版／EPIC 現場教材流傳的數字，本次未取得原文確證。</p>
+  <p><strong>怎麼教才不會錯：</strong>把 <strong>EtCO₂ 當終點、速率當起點</strong>。嬰兒照 10 次/分一定會 CO₂ 堆積 —— 生理上就該比成人快。做法是「從該年齡正常呼吸速率下緣起步 → 看 EtCO₂ → 調到 35–45」。若地方 SOP 寫了年齡別速率，以 SOP 為準但仍以 EtCO₂ 收斂。</p>
+</div>
+<div class="callout amber">
+  <div class="ct">修正二</div>
+  <p><strong>BTF 3rd ed 的小兒血壓目標比「70+2×年齡」高很多</strong>（70／84／90／100，見<a href="#s4">第 4 節</a>）。前者是低血壓<strong>定義</strong>，後者是要<strong>維持的目標</strong>，兩者不可混用。</p>
+</div>
+<h4>三個真正的證據缺口</h4>
+<ul class="cross">
+  <li>小兒院前 <strong>EtCO₂ 導引通氣</strong>沒有 RCT</li>
+  <li>小兒<strong>姿勢／床頭角度</strong>完全沒有分級證據</li>
+  <li>BTF 3rd ed <strong>未提供年齡別通氣速率</strong> —— 現場最需要的那個數字反而消失了</li>
+</ul>
+<p><strong>可往上提的修訂建議：</strong>地方 SOP 若要納入小兒 TBI 通氣，應明訂「以 <strong>EtCO₂ 35–45</strong> 為終點」而非只寫固定速率。</p>
+
+<h2 id="s7"><span class="num">7</span>數字查核表</h2>
+<p class="lead">✓ 官方指引／同儕審查原文　○ 單一來源、未核對原文</p>
+<div class="tw"><table>
+<thead><tr><th>數字</th><th>查核來源</th><th>等級</th></tr></thead>
+<tbody>
+<tr><td>ICP −5.58 mmHg；CPP p=0.13</td><td>Neurocrit Care 2024 meta</td><td>✓</td></tr>
+<tr><td>Cochrane very low quality</td><td>Cochrane Review 2017</td><td>✓</td></tr>
+<tr class="key"><td>EtCO₂ 35–45／腦疝 30–35（Strong）</td><td><strong>BTF 3rd ed Executive Summary 原文核對</strong></td><td>✓</td></tr>
+<tr class="key"><td>年齡別 SBP 目標 70／84／90／100</td><td><strong>BTF 3rd ed Table 1 原文核對</strong></td><td>✓</td></tr>
+<tr class="key"><td>「約 10 次/分、無年齡別速率」</td><td><strong>BTF 3rd ed 原文核對（確認缺漏）</strong></td><td>✓</td></tr>
+<tr><td>成人 EPIC aOR 3.52 / 0.72</td><td>JAMA Surg 2019 Figure 3 原圖</td><td>✓</td></tr>
+<tr><td>PEGASUS 26%／23.3% vs 8.6%／aRR 0.46</td><td>Kannan 2018 摘要（PubMed 核對）</td><td>✓</td></tr>
+<tr><td>嬰兒 25／兒童 20 次/分</td><td>二手引用，未取得原文</td><td><strong>○</strong></td></tr>
+<tr><td>嬰兒墊軀幹（大後枕）</td><td>教學共識，無分級證據</td><td><strong>○</strong></td></tr>
+</tbody></table></div>
+
+<h2 id="s8"><span class="num">8</span>參考文獻</h2>
+<ol class="refs">
+<li><a href="https://doi.org/10.1080/10903127.2023.2187905" target="_blank" rel="noopener">Prehospital Guidelines for the Management of Traumatic Brain Injury – 3rd Edition. <em style="color:inherit;font-style:italic;font-weight:400">Prehosp Emerg Care</em>. 2023.</a></li>
+<li><a href="https://doi.org/10.1227/neu.0000000000002672" target="_blank" rel="noopener">Guidelines for Prehospital Management of TBI 3rd Edition: Executive Summary. <em style="color:inherit;font-style:italic;font-weight:400">Neurosurgery</em>. 2023.</a></li>
+<li><a href="https://doi.org/10.1097/PCC.0000000000001735" target="_blank" rel="noopener">Kochanek PM, et al. Guidelines for the Management of Pediatric Severe TBI, 3rd Edition. <em style="color:inherit;font-style:italic;font-weight:400">Pediatr Crit Care Med</em>. 2019;20(3S):S1-S82.</a></li>
+<li><a href="https://doi.org/10.1001/jamasurg.2019.1152" target="_blank" rel="noopener">Spaite DW, et al. Statewide Implementation of Prehospital TBI Treatment Guidelines and Survival (EPIC). <em style="color:inherit;font-style:italic;font-weight:400">JAMA Surg</em>. 2019;154(7):e191152.</a></li>
+<li><a href="https://doi.org/10.1016/j.annemergmed.2020.09.435" target="_blank" rel="noopener">EPIC4Kids: Effect of Implementing the Out-of-Hospital TBI Treatment Guidelines in Children. <em style="color:inherit;font-style:italic;font-weight:400">Ann Emerg Med</em>.</a></li>
+<li><a href="https://doi.org/10.1007/s12028-024-02020-3" target="_blank" rel="noopener">Effects of Head Elevation on ICP, CPP and Cerebral Oxygenation: SR and Meta-analysis. <em style="color:inherit;font-style:italic;font-weight:400">Neurocrit Care</em>. 2024.</a></li>
+<li><a href="https://doi.org/10.1002/14651858.CD009986.pub2" target="_blank" rel="noopener">Elevation of the Head During Intensive Care Management in People With Severe TBI. <em style="color:inherit;font-style:italic;font-weight:400">Cochrane Database Syst Rev</em>. 2017.</a></li>
+<li><a href="https://doi.org/10.1001/jamanetworkopen.2019.9448" target="_blank" rel="noopener">Yang JT, et al. Agreement Between PaCO₂ and EtCO₂ in Children. <em style="color:inherit;font-style:italic;font-weight:400">JAMA Netw Open</em>. 2019;2(8):e199448.</a></li>
+<li><a href="https://doi.org/10.1038/s41598-021-89913-x" target="_blank" rel="noopener">End-Tidal to Arterial CO₂ Gradient Is Associated With Increased Mortality in TBI. <em style="color:inherit;font-style:italic;font-weight:400">Sci Rep</em>. 2021.</a></li>
+<li><a href="https://doi.org/10.1001/jamanetworkopen.2024.57506" target="_blank" rel="noopener">Adverse Prehospital Events and Outcomes After TBI (LITES Network). <em style="color:inherit;font-style:italic;font-weight:400">JAMA Netw Open</em>. 2024.</a></li>
+<li><a href="https://doi.org/10.1186/s13054-025-05604-3" target="_blank" rel="noopener">Impact of Oxygen and Carbon Dioxide Levels on Mortality in Moderate-to-Severe TBI: SR and Meta-analysis. <em style="color:inherit;font-style:italic;font-weight:400">Crit Care</em>. 2025.</a></li>
+<li><a href="https://doi.org/10.1007/s12028-021-01312-2" target="_blank" rel="noopener">Optimal Targets of First 24-h PaCO₂ in Cerebral Injury (MIMIC-III/IV). <em style="color:inherit;font-style:italic;font-weight:400">Neurocrit Care</em>. 2021.</a></li>
+<li><a href="https://doi.org/10.1097/PEC.0000000000000803" target="_blank" rel="noopener">Kannan N, et al. Timely Hemodynamic Resuscitation and Outcomes in Severe Pediatric TBI (PEGASUS). <em style="color:inherit;font-style:italic;font-weight:400">Pediatr Emerg Care</em>. 2018;34(5):325-329.</a></li>
+<li><a href="https://doi.org/10.1016/j.ajem.2024.07.063" target="_blank" rel="noopener">Prehospital Care for TBI: Review of U.S. State EMS Protocols. <em style="color:inherit;font-style:italic;font-weight:400">Am J Emerg Med</em>. 2024.</a></li>
+<li><a href="https://doi.org/10.1016/j.injury.2021.01.008" target="_blank" rel="noopener">EMS Protocols for TBI in the United States: A Call for Standardization. <em style="color:inherit;font-style:italic;font-weight:400">Injury</em>. 2021.</a></li>
+<li><a href="https://www.facs.org/quality-programs/trauma/quality/best-practices-guidelines/" target="_blank" rel="noopener">ACS. Best Practices in the Management of Traumatic Brain Injury.</a></li>
+</ol>
+
+<footer>
+  <p><strong>圖片使用聲明：</strong>本文引用之期刊原圖（JAMA Surgery Figure 3、JAMA Network Open Figure 1）版權屬 American Medical Association，僅為院內教學討論之引用，已於各圖下方標註完整出處與權利人。</p>
+  <p style="margin-top:1rem">同一份內容的其他格式：<a href="index.html">投影片版（31 頁 HTML）</a>　·　<a href="ped-tbi-etco2-teaching.pptx">PowerPoint 版</a></p>
+</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  var prog=document.getElementById('prog');
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    var cur=-1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].getBoundingClientRect().top<=120) cur=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+  var btn=document.getElementById('tocBtn'), toc=document.getElementById('toc');
+  btn.addEventListener('click',function(){toc.classList.toggle('open');});
+  toc.addEventListener('click',function(e){if(e.target.tagName==='A')toc.classList.remove('open');});
+})();
+</script>
+</body>
+</html>

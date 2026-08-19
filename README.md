@@ -6,7 +6,8 @@ EMT / EMT-P 教學材料。先呈現成人證據力，再對照小兒證據，�
 |---|---|---|
 | 投影片（31 頁 HTML） | https://limzijiang.github.io/ped-tbi-ventilation-position/ | 單一檔案、離線可開、← → 翻頁、`F` 全螢幕、列印即成一頁一張 PDF |
 | 長文閱讀版 | https://limzijiang.github.io/ped-tbi-ventilation-position/reading.html | 捲動式、含側欄目錄與閱讀進度條 |
-| PowerPoint | [`ped-tbi-etco2-teaching.pptx`](ped-tbi-etco2-teaching.pptx) | 31 頁，深色主題，含講者備忘稿與可點擊 DOI |
+| **PowerPoint（精簡版）** | [`ped-tbi-3H-EPIC4Kids.pptx`](ped-tbi-3H-EPIC4Kids.pptx) | **13 頁**，以 EMT 教科書 CH27 p.732–733 的 3H-Bombs 為骨幹＋EPIC4Kids 延伸 |
+| PowerPoint（完整版） | [`ped-tbi-etco2-teaching.pptx`](ped-tbi-etco2-teaching.pptx) | 31 頁，含成人 meta 分析與 Cochrane 全段 |
 
 實證來源：BTF 院前指引 3rd ed（2023）、BTF 小兒重度 TBI 指引 3rd ed（2019）、EPIC / EPIC4Kids、Cochrane、2024–2025 meta-analyses。
 關鍵數字皆回原文或 PubMed 核對，見各版本的「數字查核」頁。
@@ -23,7 +24,8 @@ EMT / EMT-P 教學材料。先呈現成人證據力，再對照小兒證據，�
 | `index.html` / `reading.html` | 產出檔，圖片已內嵌為 data URI |
 | `deck_src.html` / `reading_src.html` | 編輯用原始檔，圖片以 `__IMG_*__` token 佔位 |
 | `build.py` | 把 `fig/` 的圖內嵌進兩份原始檔 → 產生 `index.html`、`reading.html` |
-| `make_pptx.js` | pptxgenjs 產生器 → `ped-tbi-etco2-teaching.pptx` |
+| `make_pptx_slim.js` | 精簡版產生器（red-ppt-style）→ `ped-tbi-3H-EPIC4Kids.pptx`；需 `deck_kit.js` 在同目錄 |
+| `make_pptx.js` | 完整版產生器 → `ped-tbi-etco2-teaching.pptx` |
 | `fig/` | 期刊原圖與裁切合成圖 |
 
 改內容後：
